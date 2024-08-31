@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/nodemon",
+  "quiet": true,
+  "verbose": false,
+  "signal": "SIGTERM",
+  "ignore": [
+    "dist",
+    "node_modules"
+  ],
+  "watch": [
+    "src"
+  ],
+  "ext": "*.ts *.json *.env",
+  "execMap": {
+    "ts": "node --require @swc-node/register"
+  }
+}

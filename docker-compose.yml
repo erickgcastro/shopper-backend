@@ -1,0 +1,26 @@
+version: "3"
+services:
+  database:
+    image: postgres:13
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: adm
+      POSTGRES_PASSWORD: adm
+      POSTGRES_DB: db
+    networks:
+      - shopper-backend
+
+  server:
+    build: .
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env
+    depends_on:
+      database:
+        condition: service_started
+    networks:
+      - shopper-backend
+networks:
+  shopper-backend:
