@@ -15,7 +15,7 @@ export class ConfirmMeasureValueService implements IConfirmMeasureValue {
       throw new NetworkError({
         error_code: "MEASURE_NOT_FOUND",
         statusCode: 404,
-        error_description: "",
+        error_description: "Leitura do mês já realizada",
       })
     }
 
