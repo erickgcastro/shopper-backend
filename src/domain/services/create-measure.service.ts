@@ -18,7 +18,10 @@ export class CreateMeasureService implements ICreateMeasure {
       dateNow.getMonth() + 1
     )
 
-    if (measureByMonth.length > 0) {
+    if (
+      measureByMonth.length > 0 &&
+      measureByMonth[0].measure_type === params.measure_type
+    ) {
       throw new NetworkError({
         error_code: "DOUBLE_REPORT",
         statusCode: 409,
