@@ -14,11 +14,12 @@ export class CreateMeasureService implements ICreateMeasure {
 
   async execute(params: ICreateMeasure.Params): ICreateMeasure.Result {
     const dateNow = new Date()
-    const measureByMonth = await this.measureRepository.getByMounth(
-      dateNow.getMonth() + 1
-    )
+    const measureByMonth = await this.measureRepository.getByMounth(dateNow.getMonth())
 
-    if (measureByMonth.length > 0) {
+    if (
+      measureByMonth.length > 0 &&
+      measureByMonth[0].measure_type === params.measure_type
+    ) {
       throw new NetworkError({
         error_code: "DOUBLE_REPORT",
         statusCode: 409,
